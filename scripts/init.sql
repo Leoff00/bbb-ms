@@ -1,0 +1,11 @@
+CREATE DATABASE bbbdb;
+
+\c bbbdb;
+
+
+CREATE TABLE IF NOT EXISTS voto (
+    id SERIAL PRIMARY KEY,
+    voto BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+

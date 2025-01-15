@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  postgresdb:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    networks:
+      - app_network
+    ports:
+      - 5432:5432
+    volumes:
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - .docker/pgdata:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_management
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: pass
+    networks:
+      - app_network
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - .docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - .docker/rabbitmq/log/:/var/log/rabbitmq/
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  pgdata:
+  rabbitmq:

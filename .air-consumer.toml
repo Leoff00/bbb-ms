@@ -1,0 +1,21 @@
+root = "." # Root of your project
+testdata_dir = "testdata"
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/main-consumer ./consumer" 
+  bin = "./tmp/main-consumer"
+  # Delay in milliseconds before rebuilding
+  delay = 1000
+  exclude_dir = [".docker", "assets", "tmp", "vendor", "testdata", "scripts"]
+  exclude_regex = ["_test.go"]
+  include_ext = ["go", "tpl", "tmpl", "html"]
+
+[log]
+  main_only = false
+  silent = false
+  time = false
+
+[screen]
+  clear_on_rebuild = false
+  keep_scroll = true
