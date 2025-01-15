@@ -10,8 +10,15 @@ This will build the rabbit mq queue and the postgres db
 docker compose up --build
 ```
 
-Run the makefile in the terminal:
+Run the makefile in the terminal, this will up the app and the load test:
 
 ```make
-  make
+  make run & make load-test
+```
+
+> If you haven't the air installed for golang.
+> then run this in the terminal:
+
+```make
+  make run-no-air & make load-test
 ```
